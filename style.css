@@ -1,0 +1,69 @@
+/* Base Body */
+body {
+  font-family: Arial, sans-serif;
+  background: #dcefff;
+  transition: 0.3s;
+  color: #000;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.dark {
+  background: #1e1e1e;
+  color: white;
+}
+
+/* Weather Box */
+.container {
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+}
+
+body.dark .container {
+  background: #333;
+}
+
+/* Inputs and Buttons */
+input, button {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  background: #007BFF;
+  color: white;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+/* 🔥 FINAL: Toggle Theme Button at Top Right */
+.toggle-theme {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: rgb(131, 164, 171);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.toggle-theme:hover {
+  background: #333;
+}

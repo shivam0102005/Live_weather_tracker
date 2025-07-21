@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="image/iconW.webp" type="image/x-icon">
+</head>
+<body>
+
+  <!-- TOP-RIGHT DARK MODE BUTTON OUTSIDE CONTAINER -->
+  <button onclick="toggleTheme()" class="toggle-theme">🌙</button>
+
+  <!-- Centered Weather App Container -->
+  <div class="container">
+    <h1>⛅ Weather App</h1>
+    <input type="text" id="cityInput" placeholder="Enter city">
+    <button onclick="searchCity()">Search</button>
+    <button onclick="getLocation()">📍 Use My Location</button>
+    
+    <div id="weatherResult" class="result"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
