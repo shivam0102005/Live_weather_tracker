@@ -1,9 +1,9 @@
-/* Base Body */
+/* ================= BASE BODY ================= */
 body {
-  font-family: Arial, sans-serif;
-  background: #dcefff;
-  transition: 0.3s;
-  color: #000;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  transition: 0.4s ease;
+  color: #fff;
   height: 100vh;
   margin: 0;
   display: flex;
@@ -11,59 +11,84 @@ body {
   justify-content: center;
 }
 
+/* ================= DARK MODE ================= */
 body.dark {
-  background: #1e1e1e;
-  color: white;
+  background: linear-gradient(135deg, #000000, #1a1a2e, #16213e);
 }
 
-/* Weather Box */
+/* ================= WEATHER BOX ================= */
 .container {
   text-align: center;
-  padding: 20px;
-  border-radius: 12px;
-  background: white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  max-width: 420px;
   width: 90%;
+  transition: 0.3s;
 }
 
 body.dark .container {
-  background: #333;
+  background: rgba(255, 255, 255, 0.05);
 }
 
-/* Inputs and Buttons */
-input, button {
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
+/* ================= INPUT ================= */
+input {
+  padding: 12px;
+  width: 80%;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  margin-top: 10px;
+  text-align: center;
 }
 
+/* ================= BUTTONS ================= */
 button {
+  padding: 10px 16px;
+  margin: 10px 5px;
+  border-radius: 25px;
   border: none;
   cursor: pointer;
-  background: #007BFF;
-  color: white;
+  font-weight: 600;
+  transition: 0.3s;
+  background: #00c6ff;
+  color: #fff;
 }
 
 button:hover {
-  background: #0056b3;
+  transform: scale(1.05);
+  background: #0072ff;
 }
 
-/* 🔥 FINAL: Toggle Theme Button at Top Right */
+/* ================= RESULT SECTION ================= */
+.result {
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.result img {
+  width: 80px;
+}
+
+/* ================= TOGGLE BUTTON ================= */
 .toggle-theme {
   position: fixed;
-  top: 15px;
-  right: 15px;
-  background: rgb(131, 164, 171);
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
   color: white;
   padding: 8px 14px;
   border-radius: 20px;
   font-size: 16px;
   border: none;
   cursor: pointer;
-  z-index: 9999;
+  backdrop-filter: blur(8px);
+  transition: 0.3s;
 }
 
 .toggle-theme:hover {
-  background: #333;
+  background: rgba(255, 255, 255, 0.4);
 }
