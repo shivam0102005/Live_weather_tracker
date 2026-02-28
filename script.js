@@ -1,104 +1,99 @@
-const apiKey = "29287945dd86c2ab7a0e530889eacaeb";
+const apiKey = "29287945dd86c2ab7a0e530889eacaeb";   // 🔒 Always keep key in one place only
 
+const resultDiv = document.getElementById("weatherResult");
+const cityInput = document.getElementById("cityInput");
+
+/* ================= DARK MODE ================= */
 function toggleTheme() {
   document.body.classList.toggle("dark");
 }
 
+/* ================= SEARCH CITY ================= */
 function searchCity() {
-  const city = document.getElementById("cityInput").value;
+  const city = cityInput.value.trim();
+
   if (!city) {
     alert("Please enter a city name.");
     return;
   }
-  getWeatherData(city);
+
+  getWeatherData(`q=${city}`);
 }
 
+/* ================= ENTER KEY SUPPORT ================= */
+cityInput.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    searchCity();
+  }
+});
+
+/* ================= USE MY LOCATION ================= */
 function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, showError);
-    } else {
-        document.getElementById("weatherResult").innerText = "Geolocation is not supported by this browser.";
-    }
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else {
+    resultDiv.innerText = "Geolocation not supported.";
+  }
 }
 
 function showPosition(position) {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
+  const lat = position.coords.latitude;
+  const lon = position.coords.longitude;
 
-    const apiKey = '29287945dd86c2ab7a0e530889eacaeb'; // key
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            const temperature = data.main.temp;
-            const humidity = data.main.humidity;
-            const windSpeed = data.wind.speed;
-            const weatherDescription = data.weather[0].description;
-            const cityName = data.name;
-
-            document.getElementById("weatherResult").innerHTML = `
-                📍 Location: ${cityName} <br>
-                🌡️ Temperature: ${temperature} °C <br>
-                💧 Humidity: ${humidity}% <br>
-                🌬️ Wind Speed: ${windSpeed} m/s <br>
-                🌥️ Weather: ${weatherDescription} <br>
-      
-            `;
-        })
-        .catch(error => {
-            document.getElementById("weatherResult").innerText = "Error fetching weather data.";
-            console.error(error);
-        });
+  getWeatherData(`lat=${lat}&lon=${lon}`);
 }
 
-function showError(error) {
-    let message = "";
-    switch (error.code) {
-        case error.PERMISSION_DENIED:
-            message = "User denied the request for Geolocation.";
-            break;
-        case error.POSITION_UNAVAILABLE:
-            message = "Location information is unavailable.";
-            break;
-        case error.TIMEOUT:
-            message = "The request to get user location timed out.";
-            break;
-        case error.UNKNOWN_ERROR:
-            message = "An unknown error occurred.";
-            break;
-    }
-    document.getElementById("weatherResult").innerText = message;
-}
+/* ================= FETCH WEATHER ================= */
+function getWeatherData(query) {
+  const url = `https://api.openweathermap.org/data/2.5/weather?${query}&appid=${apiKey}&units=metric`;
 
-
-
-
-
-
-function getWeatherData(city) {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  resultDiv.innerHTML = "Loading... ⏳";
 
   fetch(url)
-    .then((response) => response.json())
-    .then((data) => displayWeather(data))
-    .catch((error) => {
-      document.getElementById("weatherResult").innerHTML = "City not found!";
+    .then(response => response.json())
+    .then(data => displayWeather(data))
+    .catch(() => {
+      resultDiv.innerHTML = "⚠ Error fetching weather data.";
     });
 }
 
+/* ================= DISPLAY WEATHER ================= */
 function displayWeather(data) {
   if (data.cod !== 200) {
-    document.getElementById("weatherResult").innerHTML = "Error: " + data.message;
+    resultDiv.innerHTML = `⚠ ${data.message}`;
     return;
   }
 
-  const resultDiv = document.getElementById("weatherResult");
+  const icon = data.weather[0].icon;
+  const iconURL = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+
   resultDiv.innerHTML = `
     <h3>${data.name}, ${data.sys.country}</h3>
+    <img src="${iconURL}" alt="Weather Icon">
     <p>🌡 Temperature: ${data.main.temp} °C</p>
     <p>💧 Humidity: ${data.main.humidity}%</p>
     <p>🌬 Wind Speed: ${data.wind.speed} m/s</p>
     <p>⛅ Weather: ${data.weather[0].description}</p>
   `;
+}
+
+/* ================= GEOLOCATION ERROR ================= */
+function showError(error) {
+  let message = "";
+
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      message = "User denied location access.";
+      break;
+    case error.POSITION_UNAVAILABLE:
+      message = "Location unavailable.";
+      break;
+    case error.TIMEOUT:
+      message = "Location request timed out.";
+      break;
+    default:
+      message = "Unknown error occurred.";
+  }
+
+  resultDiv.innerText = message;
 }
