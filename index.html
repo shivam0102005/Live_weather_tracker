@@ -3,21 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Live Weather Tracker | Shivam Upadhyay</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Live weather tracking app using OpenWeather API. Built with HTML, CSS, and JavaScript.">
+  <meta name="author" content="Shivam Upadhyay">
+
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="image/iconW.webp" type="image/x-icon">
+  <link rel="icon" href="image/iconW.webp" type="image/webp">
 </head>
+
 <body>
 
-  <!-- TOP-RIGHT DARK MODE BUTTON OUTSIDE CONTAINER -->
-  <button onclick="toggleTheme()" class="toggle-theme">🌙</button>
+  <!-- Dark Mode Toggle Button -->
+  <button onclick="toggleTheme()" class="toggle-theme" aria-label="Toggle Dark Mode">
+    🌙
+  </button>
 
-  <!-- Centered Weather App Container -->
+  <!-- Weather App Container -->
   <div class="container">
     <h1>⛅ Weather App</h1>
-    <input type="text" id="cityInput" placeholder="Enter city">
-    <button onclick="searchCity()">Search</button>
-    <button onclick="getLocation()">📍 Use My Location</button>
+
+    <input 
+      type="text" 
+      id="cityInput" 
+      placeholder="Enter city name..." 
+      autocomplete="off"
+    >
+
+    <div class="btn-group">
+      <button onclick="searchCity()">Search</button>
+      <button onclick="getLocation()">📍 Use My Location</button>
+    </div>
     
     <div id="weatherResult" class="result"></div>
   </div>
