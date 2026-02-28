@@ -1,30 +1,80 @@
-🌦️ Live Weather Tracker
+🌦️ Live Weather Tracker App
 
-A simple and responsive Live Weather Tracker Web App built using HTML, CSS, and JavaScript.
-This application allows users to search for any city and get real-time weather information using a weather API.
+A modern and responsive Weather Application built using HTML, CSS, and JavaScript that fetches real-time weather data using the OpenWeather API.
 
 🚀 Features
 
 🌍 Search weather by city name
 
-🌡️ Displays temperature in Celsius
+📍 Get weather using current location (Geolocation API)
 
-💨 Shows wind speed
+🌡 Real-time temperature (Celsius)
 
-💧 Displays humidity
+💧 Humidity details
 
-🌤️ Weather condition with icon
+🌬 Wind speed information
+
+⛅ Weather description with icon
+
+🌙 Dark / Light mode toggle
 
 📱 Fully responsive design
 
-⚡ Real-time API data fetching
-
 🛠️ Technologies Used
 
-HTML5 – Structure of the webpage
+HTML5
 
-CSS3 – Styling and responsive design
+CSS3 (Glassmorphism UI + Dark Mode)
 
-JavaScript (Vanilla JS) – API handling and dynamic updates
+JavaScript (ES6)
 
-Weather API – For fetching real-time weather data
+OpenWeather API
+
+Geolocation API
+
+
+
+🔑 API Used
+
+This project uses the OpenWeather Current Weather API.
+
+To use this project:
+
+Create a free account at https://openweathermap.org/
+
+Generate your API key
+
+Replace the API key inside script.js:
+
+const apiKey = "YOUR_API_KEY_HERE";
+
+⚠️ Do not expose your API key publicly.
+
+📂 Project Structure
+Weather-App/
+│
+├── index.html
+├── style.css
+├── script.js
+└── README.md
+💻 How to Run the Project
+
+Clone the repository
+
+git clone https://github.com/your-username/weather-app.git
+
+Open index.html in your browser
+
+That's it! 🚀
+
+🌍 Future Improvements
+
+5-Day Weather Forecast
+
+Weather-based dynamic backgrounds
+
+Search history storage (localStorage)
+
+Backend integration for secure API handling
+
+Deployment on Netlify / Vercel
